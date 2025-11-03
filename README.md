@@ -1,0 +1,1 @@
+# DBMS_Mini_PROJECT-Patent_Registration_Database_System
