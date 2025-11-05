@@ -39,10 +39,8 @@ document.addEventListener('DOMContentLoaded', function(){
       e.preventDefault();
       const fd = new FormData(appForm);
       try{
-        const res = await fetch('/patent_registry/backend/add_applicant.php', {
-          method: 'POST',
-          body: fd
-        })
+        const res = await fetch('/patent_registry/backend/add_applicant.php', { method: 'POST', body: fd })
+
         const json = await res.json();
         if(res.ok && json.success){
           appForm.reset();
