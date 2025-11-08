@@ -1,15 +1,132 @@
-
-:root{
-  --bg: #f5f7fb;
-  --card: #ffffff;
-  --muted: #6b7280;
-  --accent: #2563eb;
+:root {
+  --primary: #0b5ed7;
+  --primary-light: #d8e5ff;
+  --accent: #37b6ff;
+  --bg: #f7f9fc;
+  --card-bg: #ffffff;
+  --text-dark: #1f2d3d;
+  --text-muted: #6c757d;
+  --border-light: #e2e8f0;
+  --shadow-soft: 0 8px 20px rgba(22, 28, 37, 0.06);
+  --shadow-hover: 0 18px 30px rgba(22, 28, 37, 0.12);
 }
-body{background:var(--bg); color:#0b1220; font-family:Inter,system-ui,Arial,Helvetica,sans-serif; margin:0; padding:0;}
-.navbar{background:#ffffff; box-shadow:0 2px 6px rgba(16,24,40,0.06);}
-.hero{background:#eef2ff; border-radius:8px; padding:60px 0; margin-top:16px;}
-.card{background:var(--card); border-radius:12px; border:1px solid rgba(15,23,42,0.04);}
-.btn-primary{background:var(--accent); border:none; color:#fff;}
-.muted{color:var(--muted);}
-.icon{width:56px;}
-footer{margin-top:32px; padding:16px 0; color:var(--muted); text-align:center;}
+
+/* Universal page background */
+body {
+  background: var(--bg);
+  color: var(--text-dark);
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(90deg, var(--primary), #3f8bfd);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+.navbar .navbar-brand {
+  color: #fff !important;
+  font-weight: 700;
+}
+.navbar .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  margin-right: 1rem;
+  transition: color 0.2s ease;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #fff;
+}
+
+/* Cards */
+.card {
+  border: none;
+  background: var(--card-bg);
+  box-shadow: var(--shadow-soft);
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+.btn-primary:hover {
+  background-color: #0a4bc2;
+  border-color: #0a4bc2;
+}
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.btn-outline-primary:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* Muted text */
+.muted, .text-muted, .small-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Form styling */
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.15rem rgba(11, 94, 215, 0.2);
+}
+
+/* Page header sections (like hero or banner) */
+.hero, .ex-hero {
+  background: linear-gradient(120deg, var(--primary-light), #e3f2ff);
+  padding: 3rem 1rem;
+  border-radius: 12px;
+  color: var(--text-dark);
+}
+.hero h1, .ex-hero h1 {
+  color: var(--primary);
+  font-weight: 700;
+}
+.hero p, .ex-hero p {
+  color: var(--text-muted);
+}
+
+/* Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: var(--text-muted);
+  background: #f8faff;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+
+
+
+
+/* Module color themes */
+body.applicants-page .hero { background: linear-gradient(120deg, #f0f9ff, #dff0ff); }
+body.patents-page .hero { background: linear-gradient(120deg, #eafaf2, #d5f5e3); }
+body.examiners-page .hero { background: linear-gradient(120deg, #f5f0ff, #e8dbff); }
+body.documents-page .hero { background: linear-gradient(120deg, #fff8e7, #fff2c8); }
+body.fees-page .hero { background: linear-gradient(120deg, #fef2f2, #ffe5e5); }
+body.status-page .hero { background: linear-gradient(120deg, #f0f4ff, #d9e6ff); }

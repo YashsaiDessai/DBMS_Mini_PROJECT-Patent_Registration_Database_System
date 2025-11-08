@@ -6,7 +6,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="fees-page">
+
         <nav class="navbar navbar-expand-lg">
           <div class="container">
             <a class="navbar-brand" href="index.html">Patent Registry</a>
@@ -15,7 +16,9 @@
         <div class="container py-5">
           <div class="card p-4"><h4>Record Fee</h4>
           <form id="feeForm">
-            <input name="patent_id" class="form-control mb-2" placeholder="Patent ID" required>
+            <select name="patent_id" id="patentSelect" class="form-control mb-2" required>
+  <option value="">Select a patent — loading…</option>
+</select>
             <input name="fee_type" class="form-control mb-2" placeholder="Fee type" required>
             <input name="amount" class="form-control mb-2" placeholder="Amount" required>
             <button class="btn btn-primary">Record (simulate)

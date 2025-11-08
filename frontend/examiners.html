@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Examiners — Patent Registry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .left-list { max-height:70vh; overflow:auto; }
+    .patent-card { cursor:pointer; transition:background .12s; }
+    .patent-card:hover { background:#f7fbff; }
+    .reviews { max-height:40vh; overflow:auto; }
+    .small-muted { color: #6c757d; font-size: .95rem; }
+  </style>
+</head>
+<body class="examiners-page">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">Patent Registry</a>
+      <div class="ms-auto">
+        <a class="nav-link d-inline" href="applicants.html">Applicants</a>
+        <a class="nav-link d-inline" href="patents.html">Patents</a>
+        <a class="nav-link d-inline active" href="examiners.html">Examiners</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="row g-4">
+      <!-- Left: list of patents -->
+      <div class="col-lg-3">
+        <div class="card p-3">
+          <h5>Applications</h5>
+          <div id="patentList" class="left-list list-group mt-2">
+            <!-- JS populates -->
+          </div>
+        </div>
+
+        <div class="card p-3 mt-3">
+          <h6>Add Examiner</h6>
+          <form id="examinerForm">
+            <input name="name" class="form-control mb-2" placeholder="Name" required>
+            <input name="email" class="form-control mb-2" placeholder="Email">
+            <input name="organization" class="form-control mb-2" placeholder="Organization">
+            <button class="btn btn-sm btn-primary" type="submit">Add</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Middle: patent details -->
+      <div class="col-lg-5">
+        <div class="card p-3" id="patentDetails">
+          <h5 id="patentTitle">Select an application</h5>
+          <div id="patentMeta" class="small-muted">Select a patent from the left to view details</div>
+          <div id="patentFiles" class="mt-3"></div>
+        </div>
+
+        <div class="card p-3 mt-3">
+          <h6>Reviews</h6>
+          <div id="reviews" class="reviews list-group mt-2">
+            <div class="small-muted p-2">Select an application to view its reviews.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: review form -->
+      <div class="col-lg-4">
+        <div class="card p-3">
+          <h5>Record Examination</h5>
+          <form id="reviewForm">
+            <label class="form-label">Patent</label>
+            <select id="reviewPatentSelect" name="patent_id" class="form-control mb-2" required></select>
+
+            <label class="form-label">Examiner</label>
+            <select id="examinerSelect" name="examiner_id" class="form-control mb-2" required></select>
+
+            <label class="form-label">Decision</label>
+            <select name="decision" class="form-control mb-2" required>
+              <option value="">Choose decision</option>
+              <option>Accept</option>
+              <option>Reject</option>
+              <option>Office Action</option>
+              <option>Request More Info</option>
+            </select>
+
+            <label class="form-label">Comments</label>
+            <textarea name="comments" rows="4" class="form-control mb-2" placeholder="Add notes and findings"></textarea>
+
+            <button class="btn btn-primary" type="submit">Save Review</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script src="assets/js/examiners-backend.js"></script>
+</body>
+</html>
