@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><title>Login / Register</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>.auth-box{max-width:960px;margin:3rem auto}.tab-pane{padding:1rem 0}</style>
+</head>
+<body class="auth-page">
+  <nav class="navbar navbar-expand-lg"><div class="container"><a class="navbar-brand" href="index.html">Patent Registry</a></div></nav>
+
+  <main class="container auth-box">
+    <div class="card p-4">
+      <h3 class="mb-3">Access</h3>
+
+      <ul class="nav nav-tabs" id="authTabs" role="tablist">
+        <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#loginTab">Login</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#registerTab">Register</button></li>
+      </ul>
+
+      <div class="tab-content mt-3">
+        <div id="loginTab" class="tab-pane fade show active">
+          <form id="loginForm">
+            <div class="mb-2"><input name="email" type="email" class="form-control" placeholder="Email" required></div>
+            <div class="mb-2"><input name="password" type="password" class="form-control" placeholder="Password" required></div>
+            <button class="btn btn-primary" type="submit">Login</button>
+          </form>
+        </div>
+
+        <div id="registerTab" class="tab-pane fade">
+          <form id="registerForm">
+            <div class="mb-2"><input name="name" class="form-control" placeholder="Full name" required></div>
+            <div class="mb-2"><input name="email" type="email" class="form-control" placeholder="Email" required></div>
+            <div class="mb-2"><input name="password" type="password" class="form-control" placeholder="Choose a password" required></div>
+            <button class="btn btn-outline-primary" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // small client JS to POST forms
+    async function doPost(url, form) {
+      const fd = new FormData(form);
+      const r = await fetch(url, { method:'POST', body: fd });
+      const j = await r.json().catch(()=>({error:'invalid json', status:r.status}));
+      return { ok: r.ok, status: r.status, body: j };
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const res = await doPost('/patent_registry/backend/login.php', e.target);
+      if (res.ok && res.body.success) {
+        alert('Welcome ' + res.body.name);
+        location.href = 'index.html';
+      } else {
+        alert('Login failed: ' + (res.body.error || res.body.message || res.status));
+      }
+    });
+
+    document.getElementById('registerForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const res = await doPost('/patent_registry/backend/register.php', e.target);
+      if (res.ok && res.body.success) {
+        alert('Registered — please login');
+        // switch to login tab
+        new bootstrap.Tab(document.querySelector('#authTabs button[data-bs-target="#loginTab"]')).show();
+      } else {
+        alert('Register failed: ' + (res.body.error || res.body.message || res.status));
+      }
+    });
+  </script>
+</body>
+</html>
